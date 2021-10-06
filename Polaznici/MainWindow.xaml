@@ -8,14 +8,26 @@
         Title="MainWindow" Height="450" Width="800" FontSize="24">
 	<TabControl>
 		<TabItem Header="Polaznici">
-			<Button>Prvi tab</Button>
-		</TabItem>
-		<TabItem Header="Kursevi">
 			<DockPanel>
 				<StackPanel DockPanel.Dock="Right" Name="spKurs">
 					<TextBox Text="{Binding Path=Naziv}"/>
 					<Button Click="Unos">Unos</Button>
-					<Button>Brisanje</Button>
+					<Button Click="Brisanje">Brisanje</Button>
+				</StackPanel>
+				<DataGrid Name="dgPolaznici" ColumnWidth="*" IsReadOnly="True" AutoGenerateColumns="False">
+					<DataGrid.Columns>
+						<DataGridTextColumn Header="Ime" Binding="{Binding Path=Ime}"/>
+						<DataGridTextColumn Header="Prezime" Binding="{Binding Path=Prezime}"/>
+					</DataGrid.Columns>
+				</DataGrid>
+			</DockPanel>
+		</TabItem>
+		<TabItem Header="Kursevi">
+			<DockPanel>
+				<StackPanel DockPanel.Dock="Right" Name="spPolaznici">
+					<TextBox Text="{Binding Path=Naziv}"/>
+					<Button Click="Unos">Unos</Button>
+					<Button Click="Brisanje">Brisanje</Button>
 				</StackPanel>
 				<DataGrid Name="dgKurs" ColumnWidth="*" IsReadOnly="True"/>
 			</DockPanel>
