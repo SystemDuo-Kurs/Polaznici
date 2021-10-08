@@ -10,6 +10,6 @@ namespace Polaznici
 	{
 		public string Naziv { get; set; }
 
-		//public List<Polaznik> Polaznici { get; set; } = new();
+		public List<Polaznik> Polaznici { get; set; } = new();
 	}
 }

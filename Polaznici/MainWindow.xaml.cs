@@ -30,6 +30,7 @@ namespace Polaznici
 		public MainWindow()
 		{
 			InitializeComponent();
+
 			Kursevi.Add(new Kurs { Naziv = "asd" });
 			Kursevi.Add(new Kurs { Naziv = "qwe" });
 			Kursevi.Add(new Kurs { Naziv = "zxc" });
@@ -37,10 +38,16 @@ namespace Polaznici
 
 			Polaznici.Add(new Polaznik { Ime = "Pera", Prezime = "Peric" });
 			Polaznici.Add(new Polaznik { Ime = "Neko", Prezime = "Nekic" });
+			Polaznici.Add(new Polaznik { Ime = "Asd", Prezime = "Qwe" });
+			Polaznici.Add(new Polaznik { Ime = "Ideje", Prezime = "Nemam" });
+
+		
 			dgKurs.ItemsSource = Kursevi;
 			spKurs.DataContext = Kurs;
 			dgPolaznici.ItemsSource = Polaznici;
 			spPolaznici.DataContext = Polaznik;
+
+			
 		}
 
 		private void Unos(object sender, RoutedEventArgs e)
@@ -63,7 +70,9 @@ namespace Polaznici
 				//}
 
 				//Provera sa LINQ-om :)
-				if (!Kursevi.Where(ku => ku.Naziv.ToLower() == k.Naziv.ToLower()).Any())
+				if (!Kursevi.
+						Where(ku => ku.Naziv.ToLower() == k.Naziv.ToLower()).
+						Any())
 				{
 					Kursevi.Add(spKurs.DataContext as Kurs);
 					spKurs.DataContext = new Kurs();
@@ -92,6 +101,27 @@ namespace Polaznici
 		private void Brisanje(object sender, RoutedEventArgs e)
 		{
 			Kursevi.Remove((dgKurs.SelectedItem as Kurs));
+		}
+
+		private void DupliKlik(object sender, MouseButtonEventArgs e)
+		{
+			if (dgPolaznici.SelectedItem is not null)
+			{
+				PolaznikInfo pi = new(dgPolaznici.SelectedItem as Polaznik);
+				pi.Owner = this;
+				pi.ShowDialog();
+			}
+			
+		}
+
+		private void KursDupli(object sender, MouseButtonEventArgs e)
+		{
+			if (dgKurs.SelectedItem is not null)
+			{
+				Upis u = new(dgKurs.SelectedItem as Kurs, Polaznici);
+				u.Owner = this;
+				u.ShowDialog();
+			}
 		}
 	}
 

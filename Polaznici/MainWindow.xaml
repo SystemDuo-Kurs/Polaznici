@@ -14,7 +14,7 @@
 					<Button Click="Unos">Unos</Button>
 					<Button Click="Brisanje">Brisanje</Button>
 				</StackPanel>
-				<DataGrid Name="dgPolaznici" ColumnWidth="*" IsReadOnly="True" AutoGenerateColumns="False">
+				<DataGrid Name="dgPolaznici" ColumnWidth="*" IsReadOnly="True" AutoGenerateColumns="False" MouseDoubleClick="DupliKlik">
 					<DataGrid.Columns>
 						<DataGridTextColumn Header="Ime" Binding="{Binding Path=Ime}"/>
 						<DataGridTextColumn Header="Prezime" Binding="{Binding Path=Prezime}"/>
@@ -29,8 +29,20 @@
 					<Button Click="Unos">Unos</Button>
 					<Button Click="Brisanje">Brisanje</Button>
 				</StackPanel>
-				<DataGrid Name="dgKurs" ColumnWidth="*" IsReadOnly="True"/>
+				<DataGrid Name="dgKurs" ColumnWidth="*" IsReadOnly="True" MouseDoubleClick="KursDupli" AutoGenerateColumns="False">
+					<DataGrid.Columns>
+						<DataGridTextColumn Header="Naziv kursa" Binding="{Binding Path=Naziv}"/>
+						<DataGridTemplateColumn Header="Test">
+							<DataGridTemplateColumn.CellTemplate>
+								<DataTemplate>
+									<Button>Dugmeee</Button>
+								</DataTemplate>
+							</DataGridTemplateColumn.CellTemplate>
+						</DataGridTemplateColumn>
+					</DataGrid.Columns>
+				</DataGrid> 
 			</DockPanel>
 		</TabItem>
+		
 	</TabControl>
 </Window>

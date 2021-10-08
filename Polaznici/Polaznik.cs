@@ -17,5 +17,9 @@ namespace Polaznici
 		}
 
 		public List<Kurs> Kursevi { get; set; } = new();
+
+		public override string ToString()
+			=> PrezimeIIme;
+		
 	}
 }
