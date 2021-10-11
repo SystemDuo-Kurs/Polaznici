@@ -12,7 +12,7 @@
 				<StackPanel DockPanel.Dock="Right" Name="spKurs">
 					<TextBox Text="{Binding Path=Naziv}"/>
 					<Button Click="Unos">Unos</Button>
-					<Button Click="Brisanje">Brisanje</Button>
+					<Button Click="BrisanjePolaznici">Brisanje</Button>
 				</StackPanel>
 				<DataGrid Name="dgPolaznici" ColumnWidth="*" IsReadOnly="True" AutoGenerateColumns="False" MouseDoubleClick="DupliKlik">
 					<DataGrid.Columns>

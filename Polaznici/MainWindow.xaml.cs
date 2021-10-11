@@ -41,7 +41,6 @@ namespace Polaznici
 			Polaznici.Add(new Polaznik { Ime = "Asd", Prezime = "Qwe" });
 			Polaznici.Add(new Polaznik { Ime = "Ideje", Prezime = "Nemam" });
 
-		
 			dgKurs.ItemsSource = Kursevi;
 			spKurs.DataContext = Kurs;
 			dgPolaznici.ItemsSource = Polaznici;
@@ -111,7 +110,6 @@ namespace Polaznici
 				pi.Owner = this;
 				pi.ShowDialog();
 			}
-			
 		}
 
 		private void KursDupli(object sender, MouseButtonEventArgs e)
@@ -122,6 +120,14 @@ namespace Polaznici
 				u.Owner = this;
 				u.ShowDialog();
 			}
+		}
+
+		private void BrisanjePolaznici(object sender, RoutedEventArgs e)
+		{
+			Polaznik p = dgPolaznici.SelectedItem as Polaznik;
+			Polaznici.Remove(p);
+			Kursevi.ToList()
+				.ForEach(k => k.Polaznici.Remove(p));
 		}
 	}
 

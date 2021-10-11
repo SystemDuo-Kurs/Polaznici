@@ -10,7 +10,7 @@
 		<ListBox Name="lbPolaznici"/>
 		<StackPanel VerticalAlignment="Center">
 			<Label Content="{Binding Path=Naziv}"/>
-			<Button Name="tamo" Margin="0 30"/>
+			<Button Name="tamo" Margin="0 30" Click="Dodavanje"/>
 			<Button Name="ovamo"/>
 		</StackPanel>
 		<ListBox Name="lbUpisani"/>

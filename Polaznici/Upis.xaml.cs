@@ -26,11 +26,21 @@ namespace Polaznici
 		{
 			InitializeComponent();
 			DataContext = Kurs = k;
-			
 			Polaznici = p;
+			lbUpisani.ItemsSource = Kurs.Polaznici;
 			lbPolaznici.ItemsSource = Polaznici;
 			tamo.Content = "-->";
 			ovamo.Content = "<--";
+		}
+
+		private void Dodavanje(object sender, RoutedEventArgs e)
+		{
+			Polaznik p = lbPolaznici.SelectedItem as Polaznik;
+			if (p is not null)
+			{
+				if (!Kurs.Polaznici.Contains(p))
+					Kurs.Polaznici.Add(p);
+			}
 		}
 	}
 }
