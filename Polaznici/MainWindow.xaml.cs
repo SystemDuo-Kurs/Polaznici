@@ -41,6 +41,7 @@ namespace Polaznici
 			Polaznici.Add(new Polaznik { Ime = "Asd", Prezime = "Qwe" });
 			Polaznici.Add(new Polaznik { Ime = "Ideje", Prezime = "Nemam" });
 
+			spKurs.BindingGroup = new();
 			dgKurs.ItemsSource = Kursevi;
 			spKurs.DataContext = Kurs;
 			dgPolaznici.ItemsSource = Polaznici;
@@ -51,17 +52,35 @@ namespace Polaznici
 
 		private void Unos(object sender, RoutedEventArgs e)
 		{
-			Kurs k = spKurs.DataContext as Kurs;
-			if (!(string.IsNullOrEmpty(k.Naziv) ||
-				string.IsNullOrWhiteSpace(k.Naziv)))
+			spKurs.BindingGroup.UpdateSources();
+
+			if (int.TryParse(pocSati.Text, out int sati) &&
+				int.TryParse(pocMin.Text, out int min))
 			{
-				k.Naziv = k.Naziv.Trim();
+				Kurs.Traje = new TimeSpan(sati, min, 0);
+			}else
+			{
+				MessageBox.Show("lose vreme!");
+				return;
+			}
+
+			if (Kurs.Pocinje is null || Kurs.Pocinje >= Kurs.Zavrsava)
+			{
+				MessageBox.Show("Datumi losi");
+				return;
+			}
+			
+
+			if (!(string.IsNullOrEmpty(Kurs.Naziv) ||
+				string.IsNullOrWhiteSpace(Kurs.Naziv)))
+			{
+				Kurs.Naziv = Kurs.Naziv.Trim();
 
 				//Pretraga iteracijom
 				//bool nadjenDuplikat = false;
 				//foreach (Kurs ku in Kursevi)
 				//{
-				//	if (ku.Naziv.ToLower() == k.Naziv.ToLower())
+				//	if (ku.Naziv.ToLower() == Kurs.Naziv.ToLower())
 				//	{
 				//		nadjenDuplikat = true;
 				//		break;
@@ -70,7 +89,7 @@ namespace Polaznici
 
 				//Provera sa LINQ-om :)
 				if (!Kursevi.
-						Where(ku => ku.Naziv.ToLower() == k.Naziv.ToLower()).
+						Where(ku => ku.Naziv.ToLower() == Kurs.Naziv.ToLower()).
 						Any())
 				{
 					Kursevi.Add(spKurs.DataContext as Kurs);
@@ -89,7 +108,7 @@ namespace Polaznici
 				//	MessageBox.Show(ku.Naziv);
 
 				//Ultra moderan nacin
-				//Kursevi.ToList().ForEach(k => MessageBox.Show(k.Naziv));
+				//Kursevi.ToList().ForEach(k => MessageBox.Show(Kurs.Naziv));
 
 				
 			}
@@ -127,7 +146,7 @@ namespace Polaznici
 			Polaznik p = dgPolaznici.SelectedItem as Polaznik;
 			Polaznici.Remove(p);
 			Kursevi.ToList()
-				.ForEach(k => k.Polaznici.Remove(p));
+				.ForEach(k => Kurs.Polaznici.Remove(p));
 		}
 	}
 
