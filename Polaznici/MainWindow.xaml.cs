@@ -55,9 +55,12 @@ namespace Polaznici
 			spKurs.BindingGroup.UpdateSources();
 
 			if (int.TryParse(pocSati.Text, out int sati) &&
-				int.TryParse(pocMin.Text, out int min))
+				int.TryParse(pocMin.Text, out int min) &&
+				int.TryParse(traSati.Text, out int tSati) &&
+				int.TryParse(traMin.Text, out int tMin))
 			{
-				Kurs.Traje = new TimeSpan(sati, min, 0);
+				Kurs.VremePocetka= new TimeSpan(sati, min, 0);
+				Kurs.VremeKraja = new TimeSpan(tSati, tMin, 0);
 			}else
 			{
 				MessageBox.Show("lose vreme!");

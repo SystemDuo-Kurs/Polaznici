@@ -15,7 +15,8 @@ namespace Polaznici
 
 		public DateTime? Pocinje { get; set; } = null;
 		public DateTime? Zavrsava { get; set; } = null;
-		public TimeSpan Traje { get; set; }
+		public TimeSpan VremePocetka { get; set; }
+		public TimeSpan VremeKraja { get; set; }
 		public bool[] Dani { get; set; } = new bool[7];
 	}
 }

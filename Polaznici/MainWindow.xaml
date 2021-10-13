@@ -30,6 +30,10 @@
 						<TextBox MinWidth="50" Name="pocSati"/>
 						<TextBox MinWidth="50" Name="pocMin"/>
 					</StackPanel>
+					<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+						<TextBox MinWidth="50" Name="traSati"/>
+						<TextBox MinWidth="50" Name="traMin"/>
+					</StackPanel>
 					<CheckBox IsChecked="{Binding Path=Dani[0]}">Pon</CheckBox>
 					<CheckBox IsChecked="{Binding Path=Dani[1]}">Uto</CheckBox>
 					<CheckBox IsChecked="{Binding Path=Dani[2]}">Sre</CheckBox>
