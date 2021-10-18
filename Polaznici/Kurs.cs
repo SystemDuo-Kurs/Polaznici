@@ -13,10 +13,24 @@ namespace Polaznici
 
 		public ObservableCollection<Polaznik> Polaznici { get; set; } = new();
 
-		public DateTime? Pocinje { get; set; } = null;
-		public DateTime? Zavrsava { get; set; } = null;
+		public DateTime? DatumPocetka { get; set; }
+		public DateTime? DatumKraja { get; set; }
+
+		public bool ProveraDatuma(DateTime datum)
+			=> DatumPocetka.HasValue && DatumKraja.HasValue && 
+			datum.Date >= DatumPocetka.Value.Date && datum.Date <= DatumKraja.Value.Date;
+		public bool ProveraDana(DateTime datum)
+			=> Dani.Contains(datum.DayOfWeek);
+
 		public TimeSpan VremePocetka { get; set; }
-		public TimeSpan VremeKraja { get; set; }
-		public bool[] Dani { get; set; } = new bool[7];
+		public TimeSpan Trajanje { get; set; }
+
+		public bool ProveraVremena(TimeSpan vreme)
+			=> vreme >= VremePocetka && vreme <= VremePocetka + Trajanje;
+
+		public bool Provera(DateTime vreme)
+			=> ProveraDatuma(vreme) && ProveraDana(vreme) && ProveraVremena(vreme.TimeOfDay);
+
+		public List<DayOfWeek> Dani { get; set; } = new();
 	}
 }

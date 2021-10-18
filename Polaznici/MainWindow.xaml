@@ -24,8 +24,8 @@
 			<DockPanel>
 				<StackPanel DockPanel.Dock="Right" Name="spKurs">
 					<TextBox Text="{Binding Path=Naziv, UpdateSourceTrigger=Explicit}"/>
-					<DatePicker SelectedDate="{Binding Path=Pocinje, UpdateSourceTrigger=Explicit}"/>
-					<DatePicker SelectedDate="{Binding Path=Zavrsava, UpdateSourceTrigger=Explicit}"/>
+					<DatePicker SelectedDate="{Binding Path=DatumPocetka, UpdateSourceTrigger=Explicit}"/>
+					<DatePicker SelectedDate="{Binding Path=DatumKraja, UpdateSourceTrigger=Explicit}"/>
 					<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 						<TextBox MinWidth="50" Name="pocSati"/>
 						<TextBox MinWidth="50" Name="pocMin"/>
@@ -34,13 +34,15 @@
 						<TextBox MinWidth="50" Name="traSati"/>
 						<TextBox MinWidth="50" Name="traMin"/>
 					</StackPanel>
-					<CheckBox IsChecked="{Binding Path=Dani[0]}">Pon</CheckBox>
-					<CheckBox IsChecked="{Binding Path=Dani[1]}">Uto</CheckBox>
-					<CheckBox IsChecked="{Binding Path=Dani[2]}">Sre</CheckBox>
-					<CheckBox IsChecked="{Binding Path=Dani[3]}">Cet</CheckBox>
-					<CheckBox IsChecked="{Binding Path=Dani[4]}">Pet</CheckBox>
-					<CheckBox IsChecked="{Binding Path=Dani[5]}">Sub</CheckBox>
-					<CheckBox IsChecked="{Binding Path=Dani[6]}">Ned</CheckBox>
+					<StackPanel Name="buloviZaDane">
+						<CheckBox>Ned</CheckBox>
+						<CheckBox>Pon</CheckBox>
+						<CheckBox>Uto</CheckBox>
+						<CheckBox>Sre</CheckBox>
+						<CheckBox>Cet</CheckBox>
+						<CheckBox>Pet</CheckBox>
+						<CheckBox>Sub</CheckBox>
+					</StackPanel>
 					<Button Click="Unos">Unos</Button>
 					<Button Click="Brisanje">Brisanje</Button>
 				</StackPanel>

@@ -49,31 +49,47 @@ namespace Polaznici
 
 			
 		}
-
+		enum asd
+		{
+			jen = 50, 
+			dva, 
+			tri
+		}
 		private void Unos(object sender, RoutedEventArgs e)
 		{
 			spKurs.BindingGroup.UpdateSources();
+			
+			DayOfWeek asd = DayOfWeek.Tuesday;
+			var vrednosti = Enum.GetValues(asd.GetType());
+			
+			for (int indeks = 0; indeks < 7; indeks++)
+			{
+				if ((buloviZaDane.Children[indeks] as CheckBox).IsChecked.Value)
+					Kurs.Dani.Add((DayOfWeek)vrednosti.GetValue(indeks));
 
+			}
+
+			
 			if (int.TryParse(pocSati.Text, out int sati) &&
 				int.TryParse(pocMin.Text, out int min) &&
 				int.TryParse(traSati.Text, out int tSati) &&
 				int.TryParse(traMin.Text, out int tMin))
 			{
 				Kurs.VremePocetka= new TimeSpan(sati, min, 0);
-				Kurs.VremeKraja = new TimeSpan(tSati, tMin, 0);
+				Kurs.Trajanje = new TimeSpan(tSati, tMin, 0);
 			}else
 			{
 				MessageBox.Show("lose vreme!");
 				return;
 			}
 
-			if (Kurs.Pocinje is null || Kurs.Pocinje >= Kurs.Zavrsava)
+			if (Kurs.DatumPocetka is null || Kurs.DatumPocetka >= Kurs.DatumKraja)
 			{
 				MessageBox.Show("Datumi losi");
 				return;
 			}
 			
-
+			
 			if (!(string.IsNullOrEmpty(Kurs.Naziv) ||
 				string.IsNullOrWhiteSpace(Kurs.Naziv)))
 			{
