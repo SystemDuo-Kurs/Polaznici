@@ -57,19 +57,31 @@ namespace Polaznici
 		}
 		private void Unos(object sender, RoutedEventArgs e)
 		{
+
+			//throw new Exception("Greeeska");
 			spKurs.BindingGroup.UpdateSources();
-			
-			DayOfWeek asd = DayOfWeek.Tuesday;
-			var vrednosti = Enum.GetValues(asd.GetType());
-			
+
 			for (int indeks = 0; indeks < 7; indeks++)
 			{
 				if ((buloviZaDane.Children[indeks] as CheckBox).IsChecked.Value)
-					Kurs.Dani.Add((DayOfWeek)vrednosti.GetValue(indeks));
+					Kurs.Dani.Add((DayOfWeek)indeks);
 
 			}
 
-			
+			try
+			{
+				int.Parse(pocSati.Text);
+				int.Parse(pocMin.Text);
+				int.Parse(traSati.Text);
+				int.Parse(traMin.Text);
+
+			}
+			catch
+			{
+				MessageBox.Show("Neeeeee");
+				return;
+			}
+
 			if (int.TryParse(pocSati.Text, out int sati) &&
 				int.TryParse(pocMin.Text, out int min) &&
 				int.TryParse(traSati.Text, out int tSati) &&
@@ -113,6 +125,12 @@ namespace Polaznici
 				{
 					Kursevi.Add(spKurs.DataContext as Kurs);
 					spKurs.DataContext = new Kurs();
+					pocSati.Text = string.Empty;
+					pocMin.Text = ""; //isto je :)
+					traSati.Text = string.Empty;
+					traMin.Text = string.Empty;
+					foreach (CheckBox cek in buloviZaDane.Children)
+						cek.IsChecked = false;
 				} else
 				{
 					MessageBox.Show("Jok!");
